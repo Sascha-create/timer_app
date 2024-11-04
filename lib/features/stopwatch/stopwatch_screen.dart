@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 
-class StopwatchScreen extends StatelessWidget {
+class StopwatchScreen extends StatefulWidget {
   const StopwatchScreen({
     super.key,
   });
 
+  @override
+  State<StopwatchScreen> createState() => _StopwatchScreenState();
+}
+
+int counter = 0;
+bool isStarted = false;
+
+Future<int> count() {
+  return Future.delayed(Duration(seconds: 1), () => 1);
+}
+
+class _StopwatchScreenState extends State<StopwatchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +32,7 @@ class StopwatchScreen extends StatelessWidget {
                         fontSize: 56,
                         fontWeight: FontWeight.bold,
                         color: Colors.deepPurple.shade800),
-                    'Sekunden'),
+                    '$counter'),
                 const SizedBox(
                   width: 24,
                 ),
@@ -35,15 +47,34 @@ class StopwatchScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(onPressed: () {}, child: const Text("Start")),
+                ElevatedButton(
+                    onPressed: () async {
+                      isStarted = true;
+                      while (isStarted) {
+                        counter += await count();
+                        setState(() {});
+                      }
+                      ;
+                    },
+                    child: const Text("Start")),
                 const SizedBox(
                   width: 24,
                 ),
-                ElevatedButton(onPressed: () {}, child: const Text("Stop")),
+                ElevatedButton(
+                    onPressed: () {
+                      isStarted = false;
+                    },
+                    child: const Text("Stop")),
                 const SizedBox(
                   width: 24,
                 ),
-                ElevatedButton(onPressed: () {}, child: const Text("Clear")),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        counter = 0;
+                      });
+                    },
+                    child: const Text("Clear")),
               ],
             )
           ],

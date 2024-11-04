@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 
-class TimerScreen extends StatelessWidget {
+class TimerScreen extends StatefulWidget {
   const TimerScreen({
     super.key,
   });
 
+  @override
+  State<TimerScreen> createState() => _TimerScreenState();
+}
+
+int counter = 0;
+
+class _TimerScreenState extends State<TimerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +27,7 @@ class TimerScreen extends StatelessWidget {
                         fontSize: 56,
                         fontWeight: FontWeight.bold,
                         color: Colors.deepPurple.shade800),
-                    'Sekunden'),
+                    "$counter"),
                 const SizedBox(
                   width: 24,
                 ),
