@@ -9,6 +9,8 @@ class TimerScreen extends StatefulWidget {
   State<TimerScreen> createState() => _TimerScreenState();
 }
 
+TextEditingController timeController = TextEditingController();
+
 int counter = 0;
 
 class _TimerScreenState extends State<TimerScreen> {
@@ -43,6 +45,7 @@ class _TimerScreenState extends State<TimerScreen> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 56.0, vertical: 24),
               child: TextFormField(
+                controller: timeController,
                 decoration: const InputDecoration(label: Text("Timer")),
               ),
             ),

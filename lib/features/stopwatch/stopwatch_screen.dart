@@ -9,11 +9,14 @@ class StopwatchScreen extends StatefulWidget {
   State<StopwatchScreen> createState() => _StopwatchScreenState();
 }
 
-int counter = 0;
+int counterMilliSeconds = 0;
+int counterSeconds = 0;
+int counterMinutes = 0;
+
 bool isStarted = false;
 
 Future<int> count() {
-  return Future.delayed(Duration(seconds: 1), () => 1);
+  return Future.delayed(const Duration(milliseconds: 1), () => 1);
 }
 
 class _StopwatchScreenState extends State<StopwatchScreen> {
@@ -27,21 +30,57 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                    style: TextStyle(
-                        fontSize: 56,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.deepPurple.shade800),
-                    '$counter'),
-                const SizedBox(
-                  width: 24,
+                Row(
+                  children: [
+                    Text(
+                        style: TextStyle(
+                            fontSize: 56,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepPurple.shade800),
+                        '$counterMinutes'),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                        style: TextStyle(
+                            fontSize: 56,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepPurple.shade800),
+                        ':'),
+                  ],
                 ),
-                Text(
-                    style: TextStyle(
-                        fontSize: 56,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.deepPurple.shade800),
-                    's'),
+                Row(
+                  children: [
+                    Text(
+                        style: TextStyle(
+                            fontSize: 56,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepPurple.shade800),
+                        '$counterSeconds'),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                        style: TextStyle(
+                            fontSize: 56,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepPurple.shade800),
+                        ':'),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                        style: TextStyle(
+                            fontSize: 56,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepPurple.shade800),
+                        '$counterMilliSeconds'),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                  ],
+                ),
               ],
             ),
             Row(
@@ -51,10 +90,17 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                     onPressed: () async {
                       isStarted = true;
                       while (isStarted) {
-                        counter += await count();
+                        counterMilliSeconds += await count();
+                        if (counterMilliSeconds == 1000) {
+                          counterSeconds += 1;
+                          counterMilliSeconds = 0;
+                          if (counterSeconds == 60) {
+                            counterMinutes += 1;
+                            counterSeconds = 0;
+                          }
+                        }
                         setState(() {});
                       }
-                      ;
                     },
                     child: const Text("Start")),
                 const SizedBox(
@@ -71,7 +117,9 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                 ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        counter = 0;
+                        counterMilliSeconds = 0;
+                        counterSeconds = 0;
+                        counterMinutes = 0;
                       });
                     },
                     child: const Text("Clear")),
