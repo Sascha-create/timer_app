@@ -29,14 +29,17 @@ class _TimerScreenState extends State<TimerScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                    style: TextStyle(
-                        fontSize: 56,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.deepPurple.shade800),
-                    "$secondCounter"),
+                SizedBox(
+                  width: 80,
+                  child: Text(
+                      style: TextStyle(
+                          fontSize: 56,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurple.shade800),
+                      "$secondCounter"),
+                ),
                 const SizedBox(
-                  width: 24,
+                  width: 8,
                 ),
                 Text(
                     style: TextStyle(
@@ -71,8 +74,8 @@ class _TimerScreenState extends State<TimerScreen> {
                     onPressed: () async {
                       isStarted = true;
                       while (secondCounter > 0 && isStarted) {
-                        await countSeconds();
-                        secondCounter = secondCounter - 1;
+                        int count = await countSeconds();
+                        secondCounter -= count;
                         setState(() {});
                       }
                     },

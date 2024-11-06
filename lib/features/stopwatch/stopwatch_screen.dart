@@ -16,7 +16,7 @@ int counterMinutes = 0;
 bool isStarted = false;
 
 Future<int> countMilliseconds() {
-  return Future.delayed(const Duration(milliseconds: 1), () => 1);
+  return Future.delayed(const Duration(milliseconds: 7), () => 1);
 }
 
 Future<int> countSeconds() {
@@ -57,24 +57,14 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FutureBuilder(
-                  future: testSeconds,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.done) {
-                      counterSeconds += snapshot.data!;
-                      Text("$counterSeconds");
-                    }
-                    return Text("0");
-                  },
-                ),
-                Text(
-                    style: TextStyle(
-                        fontSize: 56,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.deepPurple.shade800),
-                    '$counterMinutes'),
-                const SizedBox(
-                  width: 8,
+                SizedBox(
+                  width: 80,
+                  child: Text(
+                      style: TextStyle(
+                          fontSize: 56,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurple.shade800),
+                      '$counterMinutes'),
                 ),
                 Text(
                     style: TextStyle(
@@ -82,14 +72,17 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                         fontWeight: FontWeight.bold,
                         color: Colors.deepPurple.shade800),
                     ':'),
-                Text(
-                    style: TextStyle(
-                        fontSize: 56,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.deepPurple.shade800),
-                    '$counterSeconds'),
                 const SizedBox(
                   width: 8,
+                ),
+                SizedBox(
+                  width: 80,
+                  child: Text(
+                      style: TextStyle(
+                          fontSize: 56,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurple.shade800),
+                      '$counterSeconds'),
                 ),
                 Text(
                     style: TextStyle(
@@ -97,34 +90,42 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                         fontWeight: FontWeight.bold,
                         color: Colors.deepPurple.shade800),
                     ':'),
-                Text(
-                    style: TextStyle(
-                        fontSize: 56,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.deepPurple.shade800),
-                    '$counterMilliSeconds'),
+                const SizedBox(
+                  width: 8,
+                ),
+                SizedBox(
+                  width: 80,
+                  child: Text(
+                      style: TextStyle(
+                          fontSize: 56,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurple.shade800),
+                      '$counterMilliSeconds'),
+                ),
                 const SizedBox(
                   width: 8,
                 ),
               ],
             ),
+            const SizedBox(height: 8),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       isStarted = true;
-                      //getSeconds(isStarted);
-                      setState(() {});
-
-                      // if (counterMilliSeconds == 1000) {
-                      //   //counterSeconds += 1;
-                      //   counterMilliSeconds = 0;
-                      //   if (counterSeconds == 60) {
-                      //     //counterMinutes += 1;
-                      //     counterSeconds = 0;
-                      //   }
-                      // }
+                      while (isStarted) {
+                        counterMilliSeconds += await countMilliseconds();
+                        if (counterMilliSeconds == 100) {
+                          counterSeconds += 1;
+                          counterMilliSeconds = 0;
+                          if (counterSeconds == 60) {
+                            counterMinutes += 1;
+                            counterSeconds = 0;
+                          }
+                        }
+                        setState(() {});
+                      }
                     },
                     child: const Text("Start")),
                 const SizedBox(
