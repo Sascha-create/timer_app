@@ -30,56 +30,44 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  children: [
-                    Text(
-                        style: TextStyle(
-                            fontSize: 56,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.deepPurple.shade800),
-                        '$counterMinutes'),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                        style: TextStyle(
-                            fontSize: 56,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.deepPurple.shade800),
-                        ':'),
-                  ],
+                Text(
+                    style: TextStyle(
+                        fontSize: 56,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple.shade800),
+                    '$counterMinutes'),
+                const SizedBox(
+                  width: 8,
                 ),
-                Row(
-                  children: [
-                    Text(
-                        style: TextStyle(
-                            fontSize: 56,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.deepPurple.shade800),
-                        '$counterSeconds'),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                        style: TextStyle(
-                            fontSize: 56,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.deepPurple.shade800),
-                        ':'),
-                  ],
+                Text(
+                    style: TextStyle(
+                        fontSize: 56,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple.shade800),
+                    ':'),
+                Text(
+                    style: TextStyle(
+                        fontSize: 56,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple.shade800),
+                    '$counterSeconds'),
+                const SizedBox(
+                  width: 8,
                 ),
-                Row(
-                  children: [
-                    Text(
-                        style: TextStyle(
-                            fontSize: 56,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.deepPurple.shade800),
-                        '$counterMilliSeconds'),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                  ],
+                Text(
+                    style: TextStyle(
+                        fontSize: 56,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple.shade800),
+                    ':'),
+                Text(
+                    style: TextStyle(
+                        fontSize: 56,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple.shade800),
+                    '$counterMilliSeconds'),
+                const SizedBox(
+                  width: 8,
                 ),
               ],
             ),
