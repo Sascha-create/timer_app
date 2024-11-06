@@ -11,7 +11,12 @@ class TimerScreen extends StatefulWidget {
 
 TextEditingController timeController = TextEditingController();
 
-int counter = 0;
+Future<int> countSeconds() {
+  return Future.delayed(const Duration(seconds: 1), () => 1);
+}
+
+bool isStarted = false;
+int secondCounter = 0;
 
 class _TimerScreenState extends State<TimerScreen> {
   @override
@@ -29,7 +34,7 @@ class _TimerScreenState extends State<TimerScreen> {
                         fontSize: 56,
                         fontWeight: FontWeight.bold,
                         color: Colors.deepPurple.shade800),
-                    "$counter"),
+                    "$secondCounter"),
                 const SizedBox(
                   width: 24,
                 ),
@@ -52,15 +57,46 @@ class _TimerScreenState extends State<TimerScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(onPressed: () {}, child: const Text("Start")),
+                ElevatedButton(
+                    onPressed: () async {
+                      setState(() {
+                        secondCounter = int.parse(timeController.text);
+                      });
+                    },
+                    child: const Text("Set")),
                 const SizedBox(
-                  width: 24,
+                  width: 16,
                 ),
-                ElevatedButton(onPressed: () {}, child: const Text("Stop")),
+                ElevatedButton(
+                    onPressed: () async {
+                      isStarted = true;
+                      while (secondCounter > 0 && isStarted) {
+                        await countSeconds();
+                        secondCounter = secondCounter - 1;
+                        setState(() {});
+                      }
+                    },
+                    child: const Text("Start")),
                 const SizedBox(
-                  width: 24,
+                  width: 16,
                 ),
-                ElevatedButton(onPressed: () {}, child: const Text("Clear")),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isStarted = false;
+                      });
+                    },
+                    child: const Text("Stop")),
+                const SizedBox(
+                  width: 16,
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        secondCounter = 0;
+                      });
+                    },
+                    child: const Text("Clear")),
               ],
             )
           ],
