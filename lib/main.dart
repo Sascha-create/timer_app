@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:timer_app/config/themes.dart';
 import 'package:timer_app/features/shared/app_home.dart';
-
 
 void main() {
   runApp(const MainApp());
@@ -11,8 +11,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: AppHome(),
+    return MaterialApp(
+      theme: pixelTheme,
+      home: const AppHome(),
     );
   }
 }

@@ -20,16 +20,20 @@ class _AppHomeState extends State<AppHome> {
       const TimerScreen(),
       const StopwatchScreen(),
     ];
-    List<Widget> titles = const [Text("Timer"), Text("Stopwatch")];
+    List<Widget> titles = const [Text("Timer 3000"), Text("Stopwatch 3000")];
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.deepPurple.shade800,
+          backgroundColor: Colors.black,
           title: titles[currentIndex],
           titleTextStyle: const TextStyle(
-              fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold),
+            fontSize: 28,
+            color: Color.fromARGB(255, 70, 16, 231),
+            fontWeight: FontWeight.bold,
+          ),
         ),
         body: screens[currentIndex],
         bottomNavigationBar: NavigationBar(
+            backgroundColor: Colors.black38,
             selectedIndex: currentIndex,
             onDestinationSelected: (int index) {
               setState(() {

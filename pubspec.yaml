@@ -17,3 +17,12 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  fonts:
+    - family: Pixelify Sans
+      fonts:
+        - asset: assets/fonts/PixelifySans-Regular.ttf
+          weight: 400
+    - family: Doto
+      fonts:
+        - asset: assets/fonts/Doto-Regular.ttf
+          weight: 400

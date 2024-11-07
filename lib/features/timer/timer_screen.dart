@@ -22,6 +22,7 @@ class _TimerScreenState extends State<TimerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black54,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -57,8 +58,10 @@ class _TimerScreenState extends State<TimerScreen> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 56.0, vertical: 24),
               child: TextFormField(
+                style: const TextStyle(fontSize: 24),
                 controller: timeController,
-                decoration: const InputDecoration(label: Text("Timer")),
+                decoration: const InputDecoration(
+                    label: Text(style: TextStyle(fontSize: 22), "Timer")),
               ),
             ),
             Row(

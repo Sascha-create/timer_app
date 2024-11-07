@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timer_app/config/themes.dart';
 
 class StopwatchScreen extends StatefulWidget {
   const StopwatchScreen({
@@ -51,6 +52,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black54,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -69,12 +71,15 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                           ? '0$counterMinutes'
                           : '$counterMinutes'),
                 ),
-                Text(
-                    style: TextStyle(
-                        fontSize: 56,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.deepPurple.shade800),
-                    ':'),
+                SizedBox(
+                  width: 20,
+                  child: Text(
+                      style: TextStyle(
+                          fontSize: 56,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurple.shade800),
+                      counterSeconds % 2 == 0 ? ":" : " "),
+                ),
                 const SizedBox(
                   width: 8,
                 ),
@@ -89,12 +94,15 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                           ? '0$counterSeconds'
                           : '$counterSeconds'),
                 ),
-                Text(
-                    style: TextStyle(
-                        fontSize: 56,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.deepPurple.shade800),
-                    ':'),
+                SizedBox(
+                  width: 20,
+                  child: Text(
+                      style: TextStyle(
+                          fontSize: 56,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.deepPurple.shade800),
+                      counterSeconds % 2 == 0 ? ":" : " "),
+                ),
                 const SizedBox(
                   width: 8,
                 ),
