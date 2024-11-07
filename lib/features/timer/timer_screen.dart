@@ -30,13 +30,15 @@ class _TimerScreenState extends State<TimerScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 80,
+                  width: 120,
                   child: Text(
                       style: TextStyle(
                           fontSize: 56,
                           fontWeight: FontWeight.bold,
-                          color: Colors.deepPurple.shade800),
-                      "$secondCounter"),
+                          color: secondCounter == 0
+                              ? Colors.green
+                              : Colors.deepPurple.shade800),
+                      showSeconds(secondCounter)),
                 ),
                 const SizedBox(
                   width: 8,
@@ -45,7 +47,9 @@ class _TimerScreenState extends State<TimerScreen> {
                     style: TextStyle(
                         fontSize: 56,
                         fontWeight: FontWeight.bold,
-                        color: Colors.deepPurple.shade800),
+                        color: secondCounter == 0
+                            ? Colors.green
+                            : Colors.deepPurple.shade800),
                     's'),
               ],
             ),
@@ -106,5 +110,18 @@ class _TimerScreenState extends State<TimerScreen> {
         ),
       ),
     );
+  }
+}
+
+String showSeconds(int secondCounter) {
+  switch (secondCounter) {
+    case < 10:
+      return "00$secondCounter";
+    case >= 10 && <= 99:
+      return "0$secondCounter";
+    case >= 100:
+      return "$secondCounter";
+    default:
+      return "$secondCounter";
   }
 }

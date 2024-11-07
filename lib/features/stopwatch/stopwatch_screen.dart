@@ -23,8 +23,9 @@ Future<int> countSeconds() {
   return Future.delayed(const Duration(seconds: 1), () => 1);
 }
 
-Future<int> countMinutes() {
-  return Future.delayed(const Duration(minutes: 1), () => 1);
+Future<int> countMinutes() async {
+  await Future.delayed(const Duration(minutes: 1));
+  return 1;
 }
 
 void getMilliseconds() async {
@@ -64,7 +65,9 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                           fontSize: 56,
                           fontWeight: FontWeight.bold,
                           color: Colors.deepPurple.shade800),
-                      '$counterMinutes'),
+                      counterMinutes < 10
+                          ? '0$counterMinutes'
+                          : '$counterMinutes'),
                 ),
                 Text(
                     style: TextStyle(
@@ -82,7 +85,9 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                           fontSize: 56,
                           fontWeight: FontWeight.bold,
                           color: Colors.deepPurple.shade800),
-                      '$counterSeconds'),
+                      counterSeconds < 10
+                          ? '0$counterSeconds'
+                          : '$counterSeconds'),
                 ),
                 Text(
                     style: TextStyle(
@@ -100,7 +105,9 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                           fontSize: 56,
                           fontWeight: FontWeight.bold,
                           color: Colors.deepPurple.shade800),
-                      '$counterMilliSeconds'),
+                      counterMilliSeconds < 10
+                          ? '0$counterMilliSeconds'
+                          : '$counterMilliSeconds'),
                 ),
                 const SizedBox(
                   width: 8,
@@ -114,6 +121,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                 ElevatedButton(
                     onPressed: () async {
                       isStarted = true;
+
                       while (isStarted) {
                         counterMilliSeconds += await countMilliseconds();
                         if (counterMilliSeconds == 100) {
