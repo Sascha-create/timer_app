@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:timer_app/config/themes.dart';
 
 class StopwatchScreen extends StatefulWidget {
   const StopwatchScreen({
@@ -19,34 +18,6 @@ bool isStarted = false;
 Future<int> countMilliseconds() {
   return Future.delayed(const Duration(milliseconds: 7), () => 1);
 }
-
-Future<int> countSeconds() {
-  return Future.delayed(const Duration(seconds: 1), () => 1);
-}
-
-Future<int> countMinutes() async {
-  await Future.delayed(const Duration(minutes: 1));
-  return 1;
-}
-
-void getMilliseconds() async {
-  int millisecond = await countMilliseconds();
-  counterMilliSeconds += millisecond;
-}
-
-Future<void> getSeconds() async {
-  while (isStarted) {
-    int second = await countSeconds();
-    counterSeconds += second;
-  }
-}
-
-void getMinutes() async {
-  int minutes = await countMinutes();
-  counterMinutes += minutes;
-}
-
-Future<int> testSeconds = countSeconds();
 
 class _StopwatchScreenState extends State<StopwatchScreen> {
   @override
