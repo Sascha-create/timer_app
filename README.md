@@ -1,8 +1,7 @@
 # timer_app
 
-<img src="screenshots/timer_start_screen.png" width="200" /> 
-<img src="screenshots/timer_run_screen.png" width="200" /> 
-<img src="screenshots/stopwatch_screen.png" width="200" />
+<img src="screenshots/timer_start_screen.png" width="200" /> <img src="screenshots/timer_run_screen.png" width="200" /> <img src="screenshots/stopwatch_screen.png" width="200" />
+
 
 ## Eine einfache Timer und Stopwatch App
 
