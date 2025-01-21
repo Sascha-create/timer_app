@@ -15,6 +15,19 @@ Future<int> countSeconds() {
   return Future.delayed(const Duration(seconds: 1), () => 1);
 }
 
+String showSeconds(int secondCounter) {
+  switch (secondCounter) {
+    case < 10:
+      return "00$secondCounter";
+    case >= 10 && <= 99:
+      return "0$secondCounter";
+    case >= 100:
+      return "$secondCounter";
+    default:
+      return "$secondCounter";
+  }
+}
+
 bool isStarted = false;
 int secondCounter = 0;
 
@@ -116,15 +129,4 @@ class _TimerScreenState extends State<TimerScreen> {
   }
 }
 
-String showSeconds(int secondCounter) {
-  switch (secondCounter) {
-    case < 10:
-      return "00$secondCounter";
-    case >= 10 && <= 99:
-      return "0$secondCounter";
-    case >= 100:
-      return "$secondCounter";
-    default:
-      return "$secondCounter";
-  }
-}
+
